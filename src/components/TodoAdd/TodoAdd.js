@@ -7,7 +7,6 @@ const TodoAdd = ({ setAddTodoFormVisible }) => {
   return (
     <section className="container">
       <TodoForm
-        edit={false}
         setAddTodoFormVisible={setAddTodoFormVisible}
         value={value}
         setValue={setValue}

@@ -1,13 +1,7 @@
 import { useEffect, useRef } from "react";
 import style from "./TodoForm.module.css";
 
-const TodoForm = ({
-  edit,
-  setAddTodoFormVisible,
-  value,
-  setValue,
-  onSubmit,
-}) => {
+const TodoForm = ({ setAddTodoFormVisible, value, setValue, onSubmit }) => {
   const titleRef = useRef();
 
   useEffect(() => {
@@ -37,7 +31,7 @@ const TodoForm = ({
 
   return (
     <form className={style.form} onSubmit={formHandler}>
-      <h3>{edit ? "Edit Todo" : "Add New Todo"}</h3>
+      <h3>Add New Todo</h3>
       <input
         onChange={inputHandler}
         type="text"
@@ -50,8 +44,8 @@ const TodoForm = ({
         <button className={style.cancel} name="cancel" type="submit">
           Cancel
         </button>
-        <button className={style.update} name="update" type="submit">
-          {edit ? "Update" : "Add"}
+        <button className={style.add} name="add" type="submit">
+          Add
         </button>
       </div>
     </form>

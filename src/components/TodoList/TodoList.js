@@ -1,8 +1,5 @@
 import style from "./TodoList.module.css";
 import Todo from "../Todo/Todo";
-import Section from "../../components/Section/Section";
-import TodoEdit from "../TodoEdit/TodoEdit";
-import { useState } from "react";
 
 // Static Data
 const todoList = [
@@ -25,9 +22,6 @@ const todoList = [
 ];
 
 const TodoList = () => {
-  const [addTodoFormVisible, setAddTodoFormVisible] = useState();
-  const [editValue, setEditValue] = useState();
-
   const onCopy = async (e, value) => {
     e.stopPropagation();
     try {
@@ -42,15 +36,6 @@ const TodoList = () => {
     <section className={`container ${style.todoList}`}>
       <div>
         <h2>Todos</h2>
-        {addTodoFormVisible && (
-          <Section>
-            <TodoEdit
-              setAddTodoFormVisible={setAddTodoFormVisible}
-              value={editValue}
-              setValue={setEditValue}
-            />
-          </Section>
-        )}
       </div>
       {todoList.length === 0 ? (
         <h2 className={style.empty}>{"No Todos Found"}</h2>

@@ -1,5 +1,5 @@
 import style from "./Todo.module.css";
-import { BiCopyAlt, BiEditAlt, BiTrashAlt } from "react-icons/bi";
+import { BiCopyAlt, BiTrash } from "react-icons/bi";
 
 const Todo = ({ todo, onCopy }) => {
   return (
@@ -10,8 +10,7 @@ const Todo = ({ todo, onCopy }) => {
         </div>
         <div className={style.btnContainer}>
           <BiCopyAlt className={`icons ${style.btn}`} onClick={onCopy} />
-          <BiEditAlt className={`icons ${style.btn}`} />
-          <BiTrashAlt className={`icons ${style.btn}`} />
+          <BiTrash className={`icons ${style.btn}`} />
         </div>
       </div>
     </div>
