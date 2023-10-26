@@ -1,0 +1,14 @@
+.search {
+  position: relative;
+}
+
+.search input {
+  background-color: var(--gray);
+  border: none;
+  padding-left: 3rem;
+  border-radius: 5px;
+}
+
+.search input:focus {
+  border: solid rgb(96, 177, 58) 3px;
+}
