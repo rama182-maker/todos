@@ -28,6 +28,16 @@ const TodoList = () => {
   const [addTodoFormVisible, setAddTodoFormVisible] = useState();
   const [editValue, setEditValue] = useState();
 
+  const onCopy = async (e, value) => {
+    e.stopPropagation();
+    try {
+      await navigator.clipboard.writeText(value.title);
+      alert(`Title - [${value.title}] copied to clipboard`);
+    } catch (error) {
+      console.error("Failed to Copy Title to clipboard", error);
+    }
+  };
+
   return (
     <section className={`container ${style.todoList}`}>
       <div>
@@ -46,7 +56,9 @@ const TodoList = () => {
         <h2 className={style.empty}>{"No Todos Found"}</h2>
       ) : (
         todoList.map((todo) => {
-          return <Todo todo={todo} key={todo.id} />;
+          return (
+            <Todo todo={todo} key={todo.id} onCopy={(e) => onCopy(e, todo)} />
+          );
         })
       )}
     </section>
