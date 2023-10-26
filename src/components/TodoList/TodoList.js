@@ -1,5 +1,6 @@
 import style from "./TodoList.module.css";
 import Todo from "../Todo/Todo";
+import { useTodosAction } from "../context";
 
 // Static Data
 const todoList = [
@@ -22,6 +23,9 @@ const todoList = [
 ];
 
 const TodoList = () => {
+  const dispatch = useTodosAction();
+  console.log(dispatch);
+
   const onCopy = async (e, value) => {
     e.stopPropagation();
     try {
