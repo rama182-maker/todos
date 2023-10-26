@@ -1,6 +1,6 @@
 import style from "./TodoList.module.css";
 import Todo from "../Todo/Todo";
-import { useTodosAction } from "../context";
+import { useTodosAction } from "../Context";
 
 // Static Data
 const todoList = [

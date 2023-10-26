@@ -1,14 +1,41 @@
-import { createContext, useContext, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useReducer,
+  useEffect,
+} from "react";
+
+const ADD_TODO = "ADD_TODO";
+export const addTodo = (value) => {
+  return { type: ADD_TODO, payload: value };
+};
+
+const UPDATE_TODOLIST = "UPDATE_TODOLIST";
+export const updateTodoList = (value) => {
+  return { type: UPDATE_TODOLIST, payload: value };
+};
 
 const TodoContainer = createContext();
 const TodoContainerDispatcher = createContext();
 
 const Context = ({ children }) => {
-  const [todos, setTodos] = useState([]);
+  const initialState = {
+    todos: [],
+  };
+  const reducer = (state, action) => {
+    return addTodosHandler(state, action);
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(state.todos));
+    dispatch(updateTodoList(state.todos));
+  }, [dispatch, state.todos]);
 
   return (
-    <TodoContainer.Provider value={todos}>
-      <TodoContainerDispatcher.Provider value={setTodos}>
+    <TodoContainer.Provider value={state}>
+      <TodoContainerDispatcher.Provider value={dispatch}>
         {children}
       </TodoContainerDispatcher.Provider>
     </TodoContainer.Provider>
@@ -18,27 +45,16 @@ const Context = ({ children }) => {
 export default Context;
 
 export const useTodos = () => useContext(TodoContainer);
-export const useTodosAction = () => {
-  const setTodos = useContext(TodoContainerDispatcher);
-  const todos = useTodos();
+export const useTodosAction = () => useContext(TodoContainerDispatcher);
 
-  const addTodosHandler = (value) => {
-    const newTodo = {
-      text: value,
-      id: new Date().getTime(),
-      isComplete: false,
-    };
-    setTodos([...todos, newTodo]);
+const addTodosHandler = (state, action) => {
+  const newTodo = {
+    title: action.payload.title,
+    id: new Date().getTime(),
+    isComplete: false,
   };
-  const completedHandler = (id) => {
-    const index = todos.findIndex((item) => {
-      return item.id === id;
-    });
-    const selectTodo = { ...todos[index] };
-    selectTodo.isComplete = !selectTodo.isComplete;
-    const cloneTodo = [...todos];
-    cloneTodo[index] = selectTodo;
-    setTodos(cloneTodo);
+  return {
+    ...state,
+    todos: [...state.todos, newTodo],
   };
-  return { addTodosHandler, completedHandler };
 };
