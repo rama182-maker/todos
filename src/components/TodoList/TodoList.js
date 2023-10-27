@@ -1,30 +1,11 @@
+import { useTodos, useTodosAction } from "../Context";
+import { completedTodo, deleteTodo } from "../TodoActionTypes";
 import style from "./TodoList.module.css";
 import Todo from "../Todo/Todo";
-import { useTodosAction } from "../Context";
-
-// Static Data
-const todoList = [
-  {
-    id: 1,
-    title: "first todo",
-  },
-  {
-    id: 2,
-    title: "second todo",
-  },
-  {
-    id: 3,
-    title: "third todo",
-  },
-  {
-    id: 4,
-    title: "fourth todo",
-  },
-];
 
 const TodoList = () => {
   const dispatch = useTodosAction();
-  console.log(dispatch);
+  const { todoList, searchValue } = useTodos();
 
   const onCopy = async (e, value) => {
     e.stopPropagation();
@@ -40,17 +21,36 @@ const TodoList = () => {
 
   return (
     <section className={`container ${style.todoList}`}>
-      <div>
-        <h2>Todos</h2>
-      </div>
       {todoList.length === 0 ? (
-        <h2 className={style.empty}>{"No Todos Found"}</h2>
+        <>
+          <div>
+            <h2>Todos</h2>
+          </div>
+          <h2 className={style.empty}>
+            {searchValue ? "No Todos Found" : "(Empty) Add Todos"}
+          </h2>
+        </>
       ) : (
-        reversedTodoList.map((todo) => {
-          return (
-            <Todo todo={todo} key={todo.id} onCopy={(e) => onCopy(e, todo)} />
-          );
-        })
+        <>
+          <div>
+            <h2>Todos - {todoList.length}</h2>
+          </div>
+          <div className={style.scrollableContainer}>
+            <div className={style.todoListContainer}>
+              {reversedTodoList.map((todo) => {
+                return (
+                  <Todo
+                    key={todo.id}
+                    todo={todo}
+                    onComplete={(e) => dispatch(completedTodo(e, todo))}
+                    onDelete={(e) => dispatch(deleteTodo(e, todo))}
+                    onCopy={(e) => onCopy(e, todo)}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </>
       )}
     </section>
   );

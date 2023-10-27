@@ -14,17 +14,16 @@ const TodoForm = ({ setAddTodoFormVisible, value, setValue, onSubmit }) => {
 
   const formHandler = (e) => {
     e.preventDefault();
-    if (e.nativeEvent.submitter.name === "cancel") {
-      setAddTodoFormVisible(false);
-      return;
+    if (e.nativeEvent.submitter) {
+      if (e.nativeEvent.submitter.name === "cancel") {
+        setAddTodoFormVisible(false);
+        return;
+      }
     }
     if (!value.title) {
-      console.log("Please enter value");
-
       !value.title && titleRef.current.focus();
       return;
     }
-    console.log("updated");
     onSubmit();
     setAddTodoFormVisible(false);
   };

@@ -2,3 +2,15 @@
   text-align: center;
   margin-top: 4rem;
 }
+
+.scrollableContainer {
+  max-height: 1000px;
+  overflow-y: auto;
+  background-color: #ffa7a7;
+  margin: 1rem;
+  border-radius: 15px;
+}
+
+.todoListContainer {
+  margin: 1rem;
+}

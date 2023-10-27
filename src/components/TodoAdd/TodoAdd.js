@@ -1,7 +1,7 @@
 import TodoForm from "../../components/TodoForm/TodoForm";
 import { useTodosAction } from "../Context";
-import { addTodo } from "../TodoActionTypes";
 import { useState } from "react";
+import { addTodo } from "../TodoActionTypes";
 
 const TodoAdd = ({ setAddTodoFormVisible }) => {
   const dispatch = useTodosAction();

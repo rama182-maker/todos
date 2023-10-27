@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useTodos } from "../Context";
 import TodoAdd from "../TodoAdd/TodoAdd";
 
 const AddTodo = () => {
+  const { searchValue } = useTodos();
   const [addTodoFormVisible, setAddTodoFormVisible] = useState(false);
 
   const openAddTodoForm = () => {
@@ -10,12 +12,16 @@ const AddTodo = () => {
 
   return (
     <section className="container">
-      <button onClick={openAddTodoForm}>Add Todo</button>
+      {!searchValue && (
+        <>
+          <button onClick={openAddTodoForm}>Add Todo</button>
 
-      {addTodoFormVisible && (
-        <section>
-          <TodoAdd setAddTodoFormVisible={setAddTodoFormVisible} />
-        </section>
+          {addTodoFormVisible && (
+            <section>
+              <TodoAdd setAddTodoFormVisible={setAddTodoFormVisible} />
+            </section>
+          )}
+        </>
       )}
     </section>
   );

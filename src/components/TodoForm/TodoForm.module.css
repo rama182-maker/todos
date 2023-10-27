@@ -29,12 +29,12 @@
 
 .add {
   margin-left: 1rem;
-  background-color: var(--green);
+  background-color: rgb(83, 255, 111);
   color: rgb(0, 0, 0);
 }
 
 .add:hover {
-  background-color: rgb(69, 221, 94);
+  background-color: #b2ff9d;
 }
 
 .cancel:hover {
