@@ -36,6 +36,8 @@ const TodoList = () => {
     }
   };
 
+  const reversedTodoList = todoList.slice().reverse();
+
   return (
     <section className={`container ${style.todoList}`}>
       <div>
@@ -44,7 +46,7 @@ const TodoList = () => {
       {todoList.length === 0 ? (
         <h2 className={style.empty}>{"No Todos Found"}</h2>
       ) : (
-        todoList.map((todo) => {
+        reversedTodoList.map((todo) => {
           return (
             <Todo todo={todo} key={todo.id} onCopy={(e) => onCopy(e, todo)} />
           );
