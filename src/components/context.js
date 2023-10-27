@@ -6,15 +6,7 @@ import {
   useEffect,
 } from "react";
 
-const ADD_TODO = "ADD_TODO";
-export const addTodo = (value) => {
-  return { type: ADD_TODO, payload: value };
-};
-
-const UPDATE_TODOLIST = "UPDATE_TODOLIST";
-export const updateTodoList = (value) => {
-  return { type: UPDATE_TODOLIST, payload: value };
-};
+import { saveLocal } from "./TodoActionTypes";
 
 const TodoContainer = createContext();
 const TodoContainerDispatcher = createContext();
@@ -27,11 +19,10 @@ const Context = ({ children }) => {
     return addTodosHandler(state, action);
   };
   const [state, dispatch] = useReducer(reducer, initialState);
-
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(state.todos));
-    dispatch(updateTodoList(state.todos));
-  }, [dispatch, state.todos]);
+    const todos = JSON.parse(localStorage.getItem("todos"));
+    if (todos) dispatch(saveLocal(todos));
+  }, []);
 
   return (
     <TodoContainer.Provider value={state}>

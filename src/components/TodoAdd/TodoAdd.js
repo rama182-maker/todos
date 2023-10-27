@@ -1,5 +1,6 @@
 import TodoForm from "../../components/TodoForm/TodoForm";
-import { addTodo, useTodosAction } from "../Context";
+import { useTodosAction } from "../Context";
+import { addTodo } from "../TodoActionTypes";
 import { useState } from "react";
 
 const TodoAdd = ({ setAddTodoFormVisible }) => {
