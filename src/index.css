@@ -54,8 +54,7 @@ textarea {
   outline: none;
   border: none;
   border-radius: 8px;
-  transition: var(--transition);
-  background-color: #fe6464;
+  background-color: #ffa7a7;
 }
 
 button {
@@ -65,7 +64,7 @@ button {
 
 input,
 textarea {
-  border: 2px solid black;
+  border: 2px solid #ffa7a7;
   background-color: white;
   width: 100%;
   min-width: 150px;
@@ -86,8 +85,7 @@ textarea:focus {
     outline: none;
     border: none;
     border-radius: 8px;
-    transition: var(--transition);
-    background-color: #fe6464;
+    background-color: #ffa7a7;
   }
 
   button {
