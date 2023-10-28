@@ -2,7 +2,7 @@
 
 A simple Todo React Application.
 
-Live Application on vercel :
+Live Application on vercel : https://todos-self-sigma.vercel.app/
 
 Features :
 
