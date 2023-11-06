@@ -18,6 +18,11 @@ export const searchTodo = (value) => {
   return { type: SEARCH, payload: value };
 };
 
+export const CATEGORY = "CATEGORY";
+export const categoryTodo = (value) => {
+  return { type: CATEGORY, payload: value };
+};
+
 export const UPDATE_TODOLIST = "UPDATE_TODOLIST";
 export const updateTodoList = (value) => {
   return { type: UPDATE_TODOLIST, payload: value };

@@ -1,0 +1,10 @@
+.categories {
+  display: flex;
+  flex-direction: row;
+  gap: 3.4rem;
+  margin-top: 2rem;
+}
+
+.categories button {
+  background-color: rgb(255, 255, 255);
+}

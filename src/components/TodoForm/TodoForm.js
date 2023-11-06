@@ -39,6 +39,13 @@ const TodoForm = ({ setAddTodoFormVisible, value, setValue, onSubmit }) => {
         placeholder="Title..."
         ref={titleRef}
       />
+      <br />
+      <input
+        value={value.category}
+        onChange={inputHandler}
+        name="category"
+        placeholder="Category...(work/home/hobby)"
+      />
       <div className={style.btn}>
         <button className={style.cancel} name="cancel" type="submit">
           Cancel
