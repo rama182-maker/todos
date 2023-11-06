@@ -8,6 +8,7 @@ import {
   SAVE_LOCAL,
   updateTodoList,
   saveLocal,
+  CATEGORY,
 } from "./TodoActionTypes";
 const TodoContainerContext = createContext();
 const TodoContainerContextDispatcher = createContext();
@@ -22,6 +23,8 @@ const reducer = (state, action) => {
       return completedHandler(state, action);
     case SEARCH:
       return searchHandler(state, action);
+    case CATEGORY:
+      return categoryHandler(state, action);
     case UPDATE_TODOLIST:
       return { ...state, todoList: action.payload };
     case SAVE_LOCAL:
@@ -71,11 +74,22 @@ const searchHandler = (state, action) => {
   return { ...state, searchValue: action.payload, todoList: filtered };
 };
 
+const categoryHandler = (state, action) => {
+  const filteredByCategory = state.todos.filter((item) => {
+    return item.category === action.payload;
+  });
+  if (action.payload === "") {
+    return { ...state, todoList: state.todos };
+  }
+  return { ...state, todoList: filteredByCategory };
+};
+
 const addTodosHandler = (state, action) => {
   const newTodo = {
     title: action.payload.title,
     id: new Date().getTime(),
     isComplete: false,
+    category: action.payload.category,
   };
   return {
     ...state,

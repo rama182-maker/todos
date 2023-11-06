@@ -6,11 +6,11 @@ import { addTodo } from "../TodoActionTypes";
 const TodoAdd = ({ setAddTodoFormVisible }) => {
   const dispatch = useTodosAction();
 
-  const [value, setValue] = useState({ title: "" });
+  const [value, setValue] = useState({ title: "", category: "" });
 
   const onSubmit = () => {
     dispatch(addTodo(value));
-    setValue({ title: "" });
+    setValue({ title: "", category: "" });
   };
 
   return (
